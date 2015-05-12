@@ -1,3 +1,5 @@
+package com.innerman;
+
 import net.wimpi.modbus.ModbusCoupler;
 import net.wimpi.modbus.io.ModbusSerialTransaction;
 import net.wimpi.modbus.msg.ReadInputRegistersRequest;
@@ -61,13 +63,14 @@ public class App {
         connection.open();
 
         System.out.println("Preparing read 4 register on unitid: " + unitID);
-        ReadInputRegistersRequest request = new ReadInputRegistersRequest(0, 4);
+        ReadInputRegistersRequest request = new ReadInputRegistersRequest(0, 3);
         request.setUnitID(unitID);
         request.setHeadless();
 
         System.out.println("Opening transaction");
         ModbusSerialTransaction transaction = new ModbusSerialTransaction(connection);
         transaction.setRequest(request);
+        transaction.setSerialInputTimeout(100);
 
         System.out.println("Executing transaction");
         transaction.execute();

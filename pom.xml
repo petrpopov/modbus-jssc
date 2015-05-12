@@ -15,7 +15,7 @@
             <artifactId>jamod-mvn</artifactId>
             <version>1.2</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/lib/jamod-mvn-1.2.jar</systemPath>
+            <systemPath>${project.basedir}/src/main/lib/jamod-mvn-1.2.1.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -26,4 +26,25 @@
             <systemPath>${project.basedir}/src/main/lib/jssc-2.6.0-streams.jar</systemPath>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.innerman.App</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
